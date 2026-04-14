@@ -1,0 +1,67 @@
+mainmenu "LED Blink Application"
+
+menuconfig LED_SUBSYSTEM
+    bool "LED SUBSYSTEM"
+    default y
+ 
+
+if LED_SUBSYSTEM
+
+
+
+config BLINK_TIME_MS
+    int "LED blink time (ms)"
+    default 500
+    range 100 2000
+    help
+      Set the blink time for the LEDs in milliseconds.
+
+
+# --------------------------------------------------
+# Advanced settings
+# --------------------------------------------------
+
+menuconfig ADVANCED_LED_SETTINGS
+    bool "Advanced LED Settings"
+    default n
+
+
+if ADVANCED_LED_SETTINGS
+
+config LED_BRIGHTNESS
+    int "LED brightness level"
+    default 100
+    range 0 100
+    help
+      Set the brightness level for the LEDs (0-100%).
+
+config LED_FADE_DURATION
+    int "LED fade duration (ms)"
+    default 300
+    range 0 5000
+    help
+      Set the duration for LED fade effects in milliseconds.
+
+# --------------------------------------------------
+# Expert settings
+# --------------------------------------------------
+
+menu "EXPERT SETTINGS"
+   visible if ADVANCED_LED_SETTINGS
+
+config Enable_LED_DEBUGGING
+    bool "LED diagnostics"
+
+config Enable_Custom_LED_PATTERNS
+    bool "Custom LED patterns"
+
+
+endmenu # EXPERT_SETTINGS
+
+endif # ADVANCED_LED_SETTINGS
+
+endif # LED_SUBSYSTEM
+
+
+
+source "Kconfig.zephyr"

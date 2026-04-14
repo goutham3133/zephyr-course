@@ -11,4 +11,7 @@ manifest:
           - hal_nxp
           - hal_stm32
           - hal_nordic
+          - segger
+          - percepio
         path-prefix: deps
+
