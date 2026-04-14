@@ -16,8 +16,8 @@ LOG_MODULE_REGISTER(led_app, LOG_LEVEL_INF);
 /* The devicetree node identifier for the "led0" alias. */
 
 
-static const struct gpio_dt_spec led0 = GPIO_DT_SPEC_GET(DT_ALIAS(app_led), gpios);
-//static const struct gpio_dt_spec led1 = GPIO_DT_SPEC_GET(DT_ALIAS(led1), gpios);
+static const struct gpio_dt_spec led0 = GPIO_DT_SPEC_GET(DT_ALIAS(led0), gpios);
+static const struct gpio_dt_spec led1 = GPIO_DT_SPEC_GET(DT_ALIAS(led1), gpios);
 
 /* Stack sizes */
 #define STACK_SIZE   512
@@ -53,7 +53,7 @@ void task_led0(void *p1, void *p2, void *p3)
 }
 
 /* ---- Task: blink LED1 at 200ms ---- */
-/*void task_led1(void *p1, void *p2, void *p3)
+void task_led1(void *p1, void *p2, void *p3)
 {
     ARG_UNUSED(p1); ARG_UNUSED(p2); ARG_UNUSED(p3);
 
@@ -80,7 +80,7 @@ void task_led0(void *p1, void *p2, void *p3)
         }
     }
 }
-*/
+
 /* Static thread definitions — no main() needed to spawn these */
 K_THREAD_DEFINE(led0_tid, STACK_SIZE, task_led0, NULL, NULL, NULL, PRIORITY_LED0, 0, 0);
 //K_THREAD_DEFINE(led1_tid, STACK_SIZE, task_led1, NULL, NULL, NULL, PRIORITY_LED1, 0, 0);

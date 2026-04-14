@@ -7,15 +7,38 @@ menuconfig LED_SUBSYSTEM
 
 if LED_SUBSYSTEM
 
+choice BLINK_SLEEP
+    prompt "LED blink speed"
+    default BLINK_1000MS
 
-
-config BLINK_TIME_MS
-    int "LED blink time (ms)"
-    default 500
-    range 100 2000
     help
-      Set the blink time for the LEDs in milliseconds.
+      Select the blink period for the LEDs.
 
+config BLINK_250MS
+    bool "250 ms"
+
+config BLINK_500MS
+    bool "500 ms"
+
+config BLINK_1000MS
+    bool "1000 ms"
+
+config BLINK_2000MS
+    bool "2000 ms"
+
+endchoice
+
+
+# Hidden int — never set by user, derived from choice above
+config BLINK_TIME_MS
+    int
+    default 250  if BLINK_250MS
+    default 500  if BLINK_500MS
+    default 1000 if BLINK_1000MS
+    default 2000 if BLINK_2000MS
+    default 0    
+    help
+      The blink time in milliseconds, derived from the BLINK_SLEEP choice.
 
 # --------------------------------------------------
 # Advanced settings
