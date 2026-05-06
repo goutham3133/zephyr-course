@@ -1,0 +1,9 @@
+board:
+  name: custom_frdm_mcxn947_board
+  full_name: CUSTOM_FRDM-MCXN947 BOARD
+  vendor: goutham
+  socs:
+  - name: mcxn947
+    variants:
+    - name: qspi
+      cpucluster: 'cpu0'
