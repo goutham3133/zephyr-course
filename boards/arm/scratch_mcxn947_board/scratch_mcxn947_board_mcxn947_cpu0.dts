@@ -1,0 +1,14 @@
+/*
+ * Copyright 2024 NXP
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/dts-v1/;
+
+#include "scratch_mcxn947_board_mcxn947_cpu0.dtsi"
+
+/ {
+	model = "Scratch NXP FRDM_N94 board";
+	compatible = "nxp,mcxn947", "nxp,mcx";
+};

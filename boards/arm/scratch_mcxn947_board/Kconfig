@@ -1,0 +1,5 @@
+# Copyright 2024 Custom
+# SPDX-License-Identifier: Apache-2.0
+
+config BOARD_SCRATCH_MCXN947_BOARD
+        select BOARD_EARLY_INIT_HOOK

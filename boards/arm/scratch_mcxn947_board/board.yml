@@ -1,0 +1,11 @@
+board:
+  name: scratch_mcxn947_board
+  full_name: Scratch MCXN947 Board
+  vendor: custom
+  socs:
+    - name: mcxn947
+      variants:
+        - name: cpu0
+          cpucluster: 'cpu0'
+        - name: cpu1
+          cpucluster: 'cpu1'

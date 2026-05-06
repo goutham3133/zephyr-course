@@ -1,0 +1,73 @@
+/*
+ * Copyright 2024 Custom
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#include "scratch_mcxn947_board-pinctrl.dtsi"
+
+/ {
+	aliases {
+		led0 = &red_led;
+	};
+
+	leds {
+		compatible = "gpio-leds";
+		red_led: led_0 {
+			gpios = <&gpio0 10 GPIO_ACTIVE_LOW>;
+			label = "Red LED";
+			status = "disabled";
+		};
+	};
+};
+
+&os_timer {
+	status = "disabled";
+};
+
+&systick {
+	status = "okay";
+};
+
+&sram {
+	sramg: memory@20050000 {
+		compatible = "mmio-sram";
+		reg = <0x20050000 DT_SIZE_K(64)>;
+	};
+	sramh: memory@20060000 {
+		compatible = "mmio-sram";
+		reg = <0x20060000 DT_SIZE_K(32)>;
+	};
+};
+
+&flash {
+	partitions {
+		compatible = "fixed-partitions";
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		/*
+		 * Partition sizes must be aligned
+		 * to the flash memory sector size of 8KB.
+		 */
+		boot_partition: partition@0 {
+			label = "mcuboot";
+			reg = <0x00000000 DT_SIZE_K(80)>;
+		};
+		slot0_partition: partition@14000 {
+			label = "image-0";
+			reg = <0x00014000 DT_SIZE_K(984)>;
+		};
+		slot1_partition: partition@10A000 {
+			label = "image-1";
+			reg = <0x0010A000 DT_SIZE_K(984)>;
+		};
+		/* storage_partition is placed in WINBOND flash memory*/
+	};
+};
+
+&flexcomm4_lpuart4 {
+	current-speed = <115200>;
+	pinctrl-0 = <&pinmux_flexcomm4_lpuart>;
+	pinctrl-names = "default";
+};

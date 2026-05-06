@@ -1,0 +1,9 @@
+# Copyright 2024 Custom
+# SPDX-License-Identifier: Apache-2.0
+
+if BOARD_SCRATCH_MCXN947_BOARD
+
+config NET_L2_ETHERNET
+        default y if NETWORKING
+
+endif # BOARD_SCRATCH_MCXN947_BOARD
